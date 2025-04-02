@@ -1,9 +1,14 @@
+using NUnit.Framework;  // Importa el framework NUnit para poder escribir y ejecutar pruebas.
+using System;           // Importa System para poder utilizar excepciones y otras funcionalidades básicas.
+
 namespace TestProject_Taller_2_disenoOrientadoAPruebas
 {
     // ********************************************************************
-    // Pruebas para la subclase EvenTask.
-    // Requisito del taller: Implementar una subclase de Task que verifique 
-    // si un número es par o impar. Retorna true si es par y false si es impar.
+    // Pruebas(TestFixture) para la subclase EvenTask.
+    // Requisito: Implementar una subclase de Task que verifique si un número es par o impar.
+    //
+    // Este conjunto de pruebas valida que la subclase EvenTask funcione según lo esperado,
+    // es decir, que retorne true para números pares y false para números impares.
     // ********************************************************************
     [TestFixture]
     public class EvenTaskTests
@@ -14,7 +19,7 @@ namespace TestProject_Taller_2_disenoOrientadoAPruebas
         {
             // Se crea una instancia de EvenTask con el número 4 (par).
             var task = new EvenTask(4);
-            // Se comprueba que Execute() retorne true, cumpliendo con la especificación.
+            // Assert.IsTrue verifica que el valor retornado por Execute() sea true.
             Assert.IsTrue(task.Execute());
         }
 
@@ -31,8 +36,11 @@ namespace TestProject_Taller_2_disenoOrientadoAPruebas
 
     // ********************************************************************
     // Pruebas para la clase Root.
-    // Requisito del taller: El árbol debe tener un único nodo Root, y este solo
+    // Requisito: El árbol debe tener un único nodo Root, y este solo
     // puede tener un único hijo que no sea otro Root.
+    //
+    // Este conjunto de pruebas valida el comportamiento de la clase Root, asegurándose
+    // de que solo se le pueda asignar un único hijo y que ese hijo no sea de tipo Root.
     // ********************************************************************
     [TestFixture]
     public class RootTests
@@ -41,9 +49,9 @@ namespace TestProject_Taller_2_disenoOrientadoAPruebas
         [Test]
         public void Root_NoPermiteOtroRootComoChild()
         {
-            // Se crea una EvenTask dummy para utilizarla.
+            // Se crea una EvenTask de prueba (dummy) para utilizarla como hijo.
             var dummyTask = new EvenTask(2);
-            // Se crea un Root utilizando la EvenTask.
+            // Se crea un Root utilizando dummyTask
             var rootChild = new Root(dummyTask);
             // Se espera que al intentar crear un Root con otro Root como hijo se lance una excepción.
             // Esto valida que el Root solo puede tener un único child y no uno de tipo Root.
@@ -54,7 +62,7 @@ namespace TestProject_Taller_2_disenoOrientadoAPruebas
         [Test]
         public void Root_EjecutaSuChildCorrectamente()
         {
-            // Se crea una EvenTask que retorna true (porque 4 es par).
+            //  Se crea una EvenTask con número 4 (par), por lo que se espera que Execute() retorne true).
             var evenTask = new EvenTask(4);
             // Se crea un Root con la EvenTask.
             var root = new Root(evenTask);
@@ -65,8 +73,11 @@ namespace TestProject_Taller_2_disenoOrientadoAPruebas
 
     // ********************************************************************
     // Pruebas para la clase Sequence (un Composite).
-    // Requisito del taller: Un nodo Sequence debe ejecutar sus hijos de izquierda a derecha,
+    // Requisito: Un nodo Sequence debe ejecutar sus hijos de izquierda a derecha,
     // retornando true solo si todos se ejecutan exitosamente, o false si alguno falla.
+    //
+    // Sequence es un nodo compuesto que ejecuta sus hijos de izquierda a derecha
+    // y retorna true solo si todos se ejecutan exitosamente.
     // ********************************************************************
     [TestFixture]
     public class SequenceTests
@@ -100,9 +111,11 @@ namespace TestProject_Taller_2_disenoOrientadoAPruebas
 
     // ********************************************************************
     // Pruebas para la clase Selector (otro Composite).
-    // Requisito del taller: Un nodo Selector debe ejecutar sus hijos de izquierda a derecha,
-    // retornando true en cuanto encuentre un hijo que se ejecute con éxito; si ninguno tiene éxito,
-    // debe retornar false.
+    // Requisito: Un nodo Selector debe ejecutar sus hijos de izquierda a derecha,
+    // retornando true en cuanto encuentre un hijo que se ejecute con éxito;
+    // si ninguno tiene éxito, debe retornar false.
+    //
+    // Selector ejecuta sus hijos y retorna true tan pronto encuentra un hijo exitoso
     // ********************************************************************
     [TestFixture]
     public class SelectorTests
@@ -137,8 +150,12 @@ namespace TestProject_Taller_2_disenoOrientadoAPruebas
 
     // ********************************************************************
     // Pruebas para la clase BehaviourTree.
-    // Requisito del taller: El BehaviourTree debe retornar false si no tiene un nodo Root,
+    // Requisito: El BehaviourTree debe retornar false si no tiene un nodo Root,
     // y en caso contrario, debe retornar el resultado de la ejecución del Root.
+    //
+    // BehaviourTree encapsula el árbol de comportamiento y se espera que:
+    // - Retorne false si no tiene un nodo Root.
+    // - Retorne el resultado del nodo Root cuando está definido.
     // ********************************************************************
     [TestFixture]
     public class BehaviourTreeTests
@@ -147,9 +164,10 @@ namespace TestProject_Taller_2_disenoOrientadoAPruebas
         [Test]
         public void BehaviourTree_RetornaFalse_SiElRootEsNull()
         {
-            // Se crea un BehaviourTree sin asignar un Root (null).
+            // Crea un BehaviourTree sin asignar un nodo Root (null).
             var tree = new BehaviourTree(null);
             // Se valida que Execute() retorne false.
+            // Assert.IsFalse verifica que Execute() retorne false, ya que no hay Root definido.
             Assert.IsFalse(tree.Execute());
         }
 
