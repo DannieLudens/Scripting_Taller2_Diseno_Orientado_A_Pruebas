@@ -113,12 +113,18 @@ Nuestra implementación y conjunto de pruebas abordan cada uno de los puntos sol
 
 Primero implementamos las pruebas unitarias y luego añadimos el código del árbol de comportamiento para validar que todo funcionara correctamente:
 
-![image](https://github.com/user-attachments/assets/e2fe55c8-3cb8-43a1-b28c-b395ed160b71)
+
+![image](https://github.com/user-attachments/assets/e5c83cfa-5d34-43a4-9ec8-cb9806009f26)
+
 
 A continuación, ejecutamos una prueba individual para asegurarnos de que las pruebas pudieran ejecutarse de forma independiente o en conjunto sin afectar los resultados:
-![Captura de pantalla 2025-04-02 081935](https://github.com/user-attachments/assets/54802790-a1ff-4c7b-9436-6ef018787b26)
+
+![image](https://github.com/user-attachments/assets/6fd1edd5-9747-4ce5-8e75-1935c1828704)
+
 
 Finalmente, agregamos una prueba con el propósito de que fallara intencionalmente, verificando así el correcto funcionamiento del sistema de pruebas.
 
-![Captura de pantalla 2025-04-02 082823](https://github.com/user-attachments/assets/ca49cf95-d326-4bec-b241-b3a1d61b326a)
+
+![image](https://github.com/user-attachments/assets/1b8df89f-9e95-4772-b10a-0adbdab201e4)
+
 
