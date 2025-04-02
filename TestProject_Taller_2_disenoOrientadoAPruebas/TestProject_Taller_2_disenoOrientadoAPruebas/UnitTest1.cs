@@ -174,12 +174,20 @@ namespace TestProject_Taller_2_disenoOrientadoAPruebas
     [TestFixture]
     public class GeneralTests
     {
-        // Un test simple de ejemplo que siempre pasa.
+        //  Esta prueba pasa correctamente
         [Test]
-        public void TestEjemplo()
+        public void Prueba_Que_Pasa()
         {
-            // Assert.Pass() indica que la prueba pasa sin realizar ninguna verificación adicional.
-            Assert.Pass();
+            // Esta prueba pasará porque simplemente afirmamos que true es true
+            Assert.IsTrue(true);
+        }
+
+        //  Esta prueba falla intencionalmente
+        [Test]
+        public void Prueba_Que_Falla()
+        {
+            // Esta prueba fallará porque estamos afirmando que false es true
+            Assert.IsTrue(false, "Esto es una falla intencional para probar el sistema de pruebas.");
         }
     }
 }
